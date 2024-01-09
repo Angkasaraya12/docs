@@ -33,14 +33,14 @@ module.exports = {
       headBundles.forEach((headPage) => {
         if (
           basePage.page == headPage.page &&
-          basePage.parsedSize * 1.05 < headPage.parsedSize
+          basePage.parsedSize < headPage.parsedSize
         ) {
           fails.push(basePage.page);
         }
       });
     });
     console.log(
-      `The bundle size of ${fails} increased by more than 5% with this PR`
+      `The bundle size of ${fails} increased with this PR`
     );
     return fails.length;
   }
