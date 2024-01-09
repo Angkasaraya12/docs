@@ -6,7 +6,7 @@ jobs:
   checkBundleSizeChange:
     permissions:
       pull-requests: read
-    name: Check whether PR increases bundle size more than 5%
+    name: Check whether PR increases bundle size
     runs-on: ubuntu-latest
     steps:
       - name: Checkout main branch
@@ -71,6 +71,6 @@ jobs:
             const baseBundles = ${{ steps.base-bundle-sizes.outputs.result }}
             const headBundles = ${{ steps.head-bundle-sizes.outputs.result }}
             return await compareBundles(baseBundles, headBundles)
-      - name: Fail if bundle size growth exceeds 5% on any of the selected pages
+      - name: Fail if bundle size increases
         if: ${{ steps.compare-bundles.outputs.result > 0 }}
         run: exit 1
